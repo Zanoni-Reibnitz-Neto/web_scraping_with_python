@@ -1,13 +1,19 @@
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+from datetime import datetime
+
+from scrapy.exceptions import DropItem
+
+from article_crawler.items import Article
 
 
-# useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
+class CheckItemPipeline:
+    def process_item(self, article: Article, spider):
+        if not article['title'] or not article['url'] or not article['last_updated']:
+            raise DropItem('Missing at least one field')
+        return article
 
 
-class ArticleScraperPipeline:
-    def process_item(self, item, spider):
-        return item
+class CleanDatePipeline:
+    def process_item(self, article: Article, spider):
+        last_updated = article['last_updated'].replace('This page was last edited on', '').strip()
+        article['last_updated'] = datetime.strptime(last_updated, '%d %B %Y, at %H:%M')
+        return article

@@ -9,10 +9,17 @@
 
 BOT_NAME = 'article_crawler'
 CLOSESPIDER_PAGECOUNT = 10
-FEED_URI='articles.json'
-FEED_FORMAT='json'
+FEED_URI = 'articles.json'
+FEED_FORMAT = 'json'
 SPIDER_MODULES = ['article_crawler.spiders']
 NEWSPIDER_MODULE = 'article_crawler.spiders'
+
+# Configure item pipelines
+# See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+ITEM_PIPELINES = {
+    'article_crawler.pipelines.CheckItemPipeline': 100,
+    'article_crawler.pipelines.CleanDatePipeline': 200,
+}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'article_crawler (+http://www.yourdomain.com)'
@@ -59,12 +66,6 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 # EXTENSIONS = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
-# }
-
-# Configure item pipelines
-# See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'article_crawler.pipelines.ArticleScraperPipeline': 300,
 # }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

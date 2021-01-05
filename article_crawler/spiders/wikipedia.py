@@ -13,13 +13,13 @@ class WikipediaSpider(CrawlSpider):
     ]
 
     custom_settings = {
-        'FEED_URI': 'articles.xml',
-        'FEED_FORMAT': 'xml'
+        'FEED_URI': 'articles.xlsx',
+        'FEED_FORMAT': 'xlsx'
     }
 
     def parse_info(self, response):
         return Article(
             title=response.xpath('//h1/text()').get() or response.xpath('//h1/i/text()').get(),
             url=response.url,
-            lastUpdated=response.xpath('//li[@id="footer-info-lastmod"]/text()').get(),
+            last_updated=response.xpath('//li[@id="footer-info-lastmod"]/text()').get(),
         )

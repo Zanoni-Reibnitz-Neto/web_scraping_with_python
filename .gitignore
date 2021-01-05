@@ -2,6 +2,11 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.xls
+*.xlsx
+*.csv
+*.json
+*.xml
 
 # C extensions
 *.so
