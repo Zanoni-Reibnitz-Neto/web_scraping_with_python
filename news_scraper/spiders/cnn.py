@@ -1,22 +1,16 @@
-from scrapy.spiders import SitemapSpider
-
-from news_scraper.items import NewsArticle
+from scrapy.spiders import CrawlSpider
 
 
-class CnnSpider(SitemapSpider):
+def generate_start_urls():
+    years = ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+    return ['https://www.cnn.com/sitemaps/article-{}-{}.xml'.format(year, month) for year in years for month in months]
+
+
+class CnnSpider(CrawlSpider):
     name = 'cnn'
     allowed_domains = ['cnn.com']
-    sitemap_urls = ['https://www.cnn.com/sitemaps/article-2020-10.xml']
+    start_urls = generate_start_urls()
 
     def parse(self, response):
-        article = NewsArticle()
-        # <script data-rh="true">
-        article['url'] = response.url
-        article['source'] = 'CNN'
-        article['title'] = response.xpath('//h1/text()').get()
-        article['description'] = response.xpath('//meta[@name="description"]/@content').get()
-        article['date'] = response.xpath('//meta[@itemprop="datePublished"]/@content').get()
-        article['author'] = response.xpath('//meta[@itemprop="author"]/@content').get().replace(', CNN', '')
-        article['text'] = response.xpath(
-            '//section[@data-zone-label="bodyText"]/div[@class="l-container"]//*/text()').getall()
-        return article
+        return {'url': response.url, 'count': response.text.count('<url>')}
