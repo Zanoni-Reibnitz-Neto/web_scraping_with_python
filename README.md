@@ -9,4 +9,4 @@
 - scrapy genspider spider_name domain_url
 - scrapy runspider spider_name.py
 - scrapy runspider spider_name.py -o file_name.csv -t csv -s CLOSESPIDER_PAGECOUNT=10
--
+- 
