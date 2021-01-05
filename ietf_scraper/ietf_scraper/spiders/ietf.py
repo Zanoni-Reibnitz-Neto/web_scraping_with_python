@@ -7,6 +7,15 @@ class IetfSpider(scrapy.Spider):
     start_urls = ['http://pythonscraping.com/linkedin/ietf.html']
 
     def parse(self, response):
-        css_title = response.css('span.title::text').get()
-        xpath_title = response.xpath('//span[@class="title"]/text()').get()
-        return {'css_title': css_title, 'xpath_title': xpath_title}
+        name = response.xpath('//span[@class="author-name"]/text()').get()
+        company = response.xpath('//span[@class="author-company"]/text()').get()
+        date = response.xpath('//span[@class="date"]/text()').get()
+        title = response.xpath('//span[@class="title"]/text()').get()
+        address = response.xpath('//span[@class="address"]/text()').get()
+        return {
+            'name': name,
+            'company': company,
+            'date': date,
+            'title': title,
+            'address': address,
+        }
