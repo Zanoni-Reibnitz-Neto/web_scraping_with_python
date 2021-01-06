@@ -1,6 +1,8 @@
 # Web Scraping With Python
 [Course](https://www.linkedin.com/learning/web-scraping-with-python)
 
+To access different lessons, see commit history.
+
 ## Notes
 
 - pip install Scrapy
