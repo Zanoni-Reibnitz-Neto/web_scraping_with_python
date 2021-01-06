@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 scrapy = "*"
 w3lib = "*"
+scrapy-selenium = "*"
 
 [requires]
 python_version = "3.8"
