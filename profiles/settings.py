@@ -2,7 +2,7 @@
 SELENIUM_DRIVER_NAME = 'chrome'
 SELENIUM_DRIVER_EXECUTABLE_PATH = 'C:/Users/Zanon/chromedriver.exe'
 SELENIUM_DRIVER_ARGUMENTS = []
-# SELENIUM_DRIVER_ARGUMENTS=['-headless']  # '--headless' if using chrome instead of firefox
+SELENIUM_DRIVER_ARGUMENTS = ['-headless']  # '--headless' if using chrome instead of firefox
 
 # Scrapy settings for locations project
 #
@@ -13,16 +13,16 @@ SELENIUM_DRIVER_ARGUMENTS = []
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'locations'
+BOT_NAME = 'profiles'
 
-SPIDER_MODULES = ['locations.spiders']
-NEWSPIDER_MODULE = 'locations.spiders'
+SPIDER_MODULES = ['profiles.spiders']
+NEWSPIDER_MODULE = 'profiles.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'locations (+http://www.yourdomain.com)'
+# USER_AGENT = 'profiles (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
@@ -50,7 +50,7 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 # SPIDER_MIDDLEWARES = {
-#    'locations.middlewares.LocationsSpiderMiddleware': 543,
+#    'profiles.middlewares.ProfilesSpiderMiddleware': 543,
 # }
 
 # Enable or disable downloader middlewares
@@ -68,7 +68,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 # ITEM_PIPELINES = {
-#    'locations.pipelines.LocationsPipeline': 300,
+#    'profiles.pipelines.ProfilesPipeline': 300,
 # }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
